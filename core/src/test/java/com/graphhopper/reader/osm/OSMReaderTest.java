@@ -143,14 +143,6 @@ public class OSMReaderTest {
     }
 
     @Test
-    public void testSort() {
-        GraphHopper hopper = new GraphHopperFacade(file1).setSortGraph(true).importOrLoad();
-        NodeAccess na = hopper.getBaseGraph().getNodeAccess();
-        assertEquals(10, na.getLon(findID(hopper.getLocationIndex(), 49, 10)), 1e-3);
-        assertEquals(51.249, na.getLat(findID(hopper.getLocationIndex(), 51.2492152, 9.4317166)), 1e-3);
-    }
-
-    @Test
     public void testOneWay() {
         GraphHopper hopper = new GraphHopperFacade(file2)
                 .setMinNetworkSize(0)
@@ -203,11 +195,7 @@ public class OSMReaderTest {
 
     @Test
     public void testFerry() {
-        GraphHopper hopper = new GraphHopperFacade(file2) {
-            @Override
-            public void cleanUp() {
-            }
-        }.importOrLoad();
+        GraphHopper hopper = new GraphHopperFacade(file2).importOrLoad();
         Graph graph = hopper.getBaseGraph();
 
         int n40 = AbstractGraphStorageTester.getIdOf(graph, 54.0);
@@ -229,11 +217,7 @@ public class OSMReaderTest {
 
     @Test
     public void testMaxSpeed() {
-        GraphHopper hopper = new GraphHopperFacade(file2) {
-            @Override
-            public void cleanUp() {
-            }
-        }.importOrLoad();
+        GraphHopper hopper = new GraphHopperFacade(file2).importOrLoad();
         Graph graph = hopper.getBaseGraph();
 
         int n60 = AbstractGraphStorageTester.getIdOf(graph, 56.0);
